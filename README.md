@@ -1,10 +1,27 @@
-listentweet
-==============================
+# listentweet
 
 ListenTweet is a tool that uses tweetpy to retreive tweets from twitter and analyzes them using NLP techniques of subjects of your choices.
 
-Project Organization
-------------
+## Checklist:
+
+- [ ] Tweet Retriever
+- [ ] Tweet Streamer
+- [ ] Kafka integration
+- [ ] Database - MongoDB?
+- [ ] SpaCy Basic Pipelines
+- [ ] Stanza Basic Pipelines
+- [ ] Scaled F-score
+- [ ] NLTK Keywords extractions
+- [ ] Transformers based vectorization
+- [ ] Umap dimension reduction
+- [ ] HDBSCAN with BERT embeddings + Word Mover Distance
+- [ ] Sentiment Analysis
+- [ ] Zero-shot classification
+- [ ] Fine-tune BERT with tweets
+- [ ] new vocabulary discovery
+- [ ] Dashboard visualization on daily basis
+
+## Project Organization
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -51,7 +68,6 @@ Project Organization
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
-
---------
+---
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
