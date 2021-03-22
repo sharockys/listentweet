@@ -1,7 +1,7 @@
 import dotenv
 import os
 import tweepy
-from listentweet.settings import *
+from listentweet.settings import PROJECT_DIR
 
 
 def get_auth_dotenv():

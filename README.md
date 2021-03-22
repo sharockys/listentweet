@@ -2,6 +2,19 @@
 
 ListenTweet is a tool that uses tweetpy to retreive tweets from twitter and analyzes them using NLP techniques of subjects of your choices.
 
+## Quick Start
+
+crete `.env` on the home directory of this project. Example:
+
+```bash
+API_KEY=[API KEY]
+API_SECRET=[API SECRET]
+ACCESS_TOKEN=[ACCESS TOKEN]
+ACCESS_TOKEN_SECRET=[ACCESS TOKEN SECRET]
+```
+
+You should create your own Twitter developper account to obtain these tokens so that you can use the twitter related part of this project.
+
 ## Checklist:
 
 - [ ] Tweet Retriever
