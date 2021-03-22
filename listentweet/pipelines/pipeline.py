@@ -1,5 +1,7 @@
 from listentweet.utils.spacy_utils import init_spacy_model
 from listentweet.utils.stanza_utils import init_stanza_model
+from wasabi import msg
+import numpy
 
 
 class LTPpipeline:
@@ -12,6 +14,7 @@ class LTPpipeline:
     ) -> None:
         self.lang = lang
         self.model_type = model_type
+        self.backend = backend
         self.nlp = self._load_backend(lang, backend, model_size, model_type)
 
     def _load_backend(self, lang, backend, model_size, model_type):
@@ -22,9 +25,10 @@ class LTPpipeline:
         else:
             raise ValueError('Only "stanza" or "spacy" backend supported.')
 
-    def get_pipelines(self) -> list[str]:
+    @property
+    def pipelines(self) -> dict[str, object]:
         if self.model_type == "spacy":
-            return self.nlp.pipe_names
+            return dict(self.nlp.pipe_names)
         if self.model_type == "stanza":
             return self.nlp.processors
 
@@ -33,3 +37,13 @@ class LTPpipeline:
 
     def _add_transformers_to_pipeline(self):
         pass
+
+    def get_sentence_embedding(self, sentence: str) -> numpy.ndarray:
+        if self.backend == "spacy":
+            doc = self.nlp(sentence)
+            if "tok2vec" in self.pipelines:
+                return doc.vector
+            elif "transformer" in dict(self.pipelines):
+                return doc._.trf_data.tensors[-1]
+        elif self.backend == "stanza":
+            msg.fail("No availale vectorizer for stanza.")
