@@ -46,6 +46,6 @@ jobs:
       # - name: Doctests with pytest
       #   run: |
       #     pytest --doctest-modules listentweet
-      - name: Integration tests with pytest
-        run: |
-          pytest tests/integration
+      # - name: Integration tests with pytest
+      #   run: |
+      #     pytest tests/integration
