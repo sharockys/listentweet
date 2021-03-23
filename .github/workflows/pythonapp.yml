@@ -43,9 +43,9 @@ jobs:
       - name: Unittests with pytest
         run: |
           pytest tests/unittests
-      - name: Doctests with pytest
-        run: |
-          pytest --doctest-modules listentweet
-      - name: Integration tests with pytest
-        run: |
-          pytest tests/integration
+      # - name: Doctests with pytest
+      #   run: |
+      #     pytest --doctest-modules listentweet
+      # - name: Integration tests with pytest
+      #   run: |
+      #     pytest tests/integration
