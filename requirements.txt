@@ -1,5 +1,6 @@
 # local package
 -e .
+-r lint-requirements.txt
 awscli
 
 # external requirements
