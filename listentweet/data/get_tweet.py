@@ -1,5 +1,6 @@
 import tweepy
 import pandas as pd
+from typing import List
 from dataclasses import make_dataclass
 from listentweet.utils.setup_tweepy import init_tweepy_api
 
@@ -10,7 +11,7 @@ class TwitterSearcher:
 
     def retrieve_tweets_by_request(
         self, req: str, n_tweets: int = 10, to_df: bool = False
-    ) -> list[str]:
+    ) -> List[str]:
         SimpleTweet = make_dataclass(
             "SimpleTweet",
             [("id", int), ("lang", str), ("text", str), ("created_at", str)],
