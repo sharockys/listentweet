@@ -1,5 +1,5 @@
 # listentweet
-![Tests](https://github.com/sharockys/listentweet/blob/main/.github/workflows/pythonapp.yml/badge.svg)
+![Tests](https://github.com/sharockys/listentweet/actions/workflows/pythonapp.yml/badge.svg)
 
 ListenTweet is a tool that uses tweetpy to retreive tweets from twitter and analyzes them using NLP techniques of subjects of your choices.
 
