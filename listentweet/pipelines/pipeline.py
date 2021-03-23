@@ -1,6 +1,7 @@
 from listentweet.utils.spacy_utils import init_spacy_model
 from listentweet.utils.stanza_utils import init_stanza_model
 from wasabi import msg
+from typing import Dict, Any
 import numpy
 
 
@@ -26,7 +27,7 @@ class LTPpipeline:
             raise ValueError('Only "stanza" or "spacy" backend supported.')
 
     @property
-    def pipelines(self) -> dict[str, object]:
+    def pipelines(self) -> Dict[str, Any]:
         if self.model_type == "spacy":
             return dict(self.nlp.pipe_names)
         if self.model_type == "stanza":
