@@ -6,6 +6,7 @@ awscli
 click
 coverage
 flake8
+nltk
 numpy
 pandas
 pre-commit
