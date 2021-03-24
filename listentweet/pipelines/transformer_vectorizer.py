@@ -10,15 +10,24 @@ class TransformersVectorizer:
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModel.from_pretrained(model_name)
 
-    def __call__(self, sentences: str):
-        return self.vectorize_sentence(sentences)
+    def __call__(self, sentences: Strs):
+        return self.vectorize_sentences(sentences)
+
+    def _tokenize(self, sentences: Strs):
+        return self.tokenizer(
+            sentences,
+            return_tensors="pt",
+            padding=True,
+            truncation=True,
+            max_length=512,
+        )
 
     def vectorize_sentences(self, sentences: Strs):
-        inputs = self.tokenizer(sentences, return_tensors="pt")
+        inputs = self._tokenize(sentences)
         outputs = self.model(**inputs)
         return outputs[1].detach()
 
     def vectorize_sentences_by_average_pool(self, sentences: Strs):
-        inputs = self.tokenizer(sentences, return_tensors="pt")
+        inputs = self._tokenize(sentences)
         outputs = self.model(**inputs)
         return outputs[0].mean(axis=1).detach()
