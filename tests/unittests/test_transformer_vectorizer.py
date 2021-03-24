@@ -21,6 +21,11 @@ def test_transformer_vectorizer():
     # test samples
     sentences = ["Je ne veux pas travailler", "mais je n'ai pas d'argent"]
 
+    # test tokenizer
+
+    tokens = vectorizer._tokenize(sentences[0])
+    assert len(tokens) == 2
+
     # test basic vectorization on one sentence
     single_vector = vectorizer(sentences[0])
     assert single_vector.shape == (1, 768)
