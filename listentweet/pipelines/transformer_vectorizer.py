@@ -16,9 +16,9 @@ class TransformersVectorizer:
     def vectorize_sentences(self, sentences: Strs):
         inputs = self.tokenizer(sentences, return_tensors="pt")
         outputs = self.model(**inputs)
-        return outputs[1]
+        return outputs[1].detach()
 
     def vectorize_sentences_by_average_pool(self, sentences: Strs):
         inputs = self.tokenizer(sentences, return_tensors="pt")
         outputs = self.model(**inputs)
-        return outputs[0].mean(axis=1)
+        return outputs[0].mean(axis=1).detach()
