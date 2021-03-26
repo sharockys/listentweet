@@ -2,6 +2,8 @@ import yake
 from yake.highlight import TextHighlighter
 from typing import Dict, List, Tuple, Union
 
+# Reference https://github.com/LIAAD/yake
+
 Strs = Union[List[str], str]
 
 parameters = {

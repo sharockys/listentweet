@@ -7,11 +7,13 @@ awscli
 click
 coverage
 flake8
+gensim
 git+https://github.com/LIAAD/yake
 nltk
 numpy
 pandas
 pre-commit
+pyemd
 python-dotenv>=0.5.1
 scipy
 spacy
