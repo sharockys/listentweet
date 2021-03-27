@@ -23,7 +23,7 @@ def test_transformer_vectorizer():
 
     # test tokenizer
 
-    tokens = vectorizer._tokenize(sentences[0])
+    tokens = vectorizer.tokenize(sentences[0])
     assert len(tokens) == 2
 
     # test basic vectorization on one sentence
