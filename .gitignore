@@ -139,6 +139,6 @@ dmypy.json
 .pytype/
 
 # Results folders
-**/data/
+data/
 
 .vscode
