@@ -6,7 +6,7 @@ from listentweet.utils.setup_tweepy import init_tweepy_api
 import json
 import logging
 import time
-from pymongo import MongoClient
+from listentweet.utils.setup_mongo import init_collection_of_database
 
 
 class TwitterSearcher:
@@ -32,9 +32,9 @@ class TwitterSearcher:
 
 
 class TwitterToDBStreamer:
-    def __init__(self) -> None:
+    def __init__(self, db_name, collection_name) -> None:
         self.api = init_tweepy_api()
-        self.listener = StreamListenerToDB(api=self.api)
+        self.listener = StreamListenerToDB(self.api, db_name, collection_name)
         self.logger = logging.getLogger(__name__)
         self.stream = tweepy.Stream(auth=self.api.auth, listener=self.listener)
 
@@ -57,15 +57,16 @@ class TwitterToDBStreamer:
 
 
 class StreamListenerToDB(tweepy.StreamListener):
-    def __init__(self, api):
+    def __init__(self, api, db_name, collection_name):
         self.api = api
         self.count = 0
         self.logger = logging.getLogger(__name__)
-        self.mongo_client = MongoClient("mongodb://localhost:27017/")
-        self.db = self.mongo_client.twitter
+        self.mongo_collection = init_collection_of_database(
+            db_name, collection_name
+        )
 
     def on_status(self, status):
-        self.db.twitter_lines.insert_one(status._json)
+        self.mongo_collection.insert_one(status._json)
         self.count += 1
         print(status)
         self.logger.info(f"Streaming... saved {self.count} tweets to MongoDB.")
@@ -121,7 +122,7 @@ class StreamListenerToJson(tweepy.StreamListener):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    stdb = TwitterToDBStreamer()
+    stdb = TwitterToDBStreamer("twitter", "laposte")
     keywords = [
         "#laposte",
         "#colissimo",
@@ -131,7 +132,17 @@ if __name__ == "__main__":
         "Colissimo",
         "dpd",
         "chronopost",
+        "colis",
+        "lettre",
+        "geopost",
+        "banque postale",
+        "digipost",
+        "DPD",
+        "Poste Mobile",
+        "Mediapost",
+        "viapost",
+        "sofipost",
+        "poste immo",
     ]
-    languages = ["fr", "zh"]
+    languages = ["fr", "en"]
     stdb(keywords, languages)
-    # stdb("china", languages)

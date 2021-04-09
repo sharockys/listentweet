@@ -5,10 +5,9 @@
 #################################################################################
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
 PROFILE = default
 PROJECT_NAME = listentweet
-PYTHON_INTERPRETER = python3
+PYTHON_INTERPRETER = python
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -19,6 +18,10 @@ endif
 #################################################################################
 # COMMANDS                                                                      #
 #################################################################################
+
+## build docker
+build_tweepy_docker:
+	docker build -f docker/Tweepy_docker/Dockerfile -t listentweet:tweepy .
 
 ## Install Python Dependencies
 requirements: test_environment
