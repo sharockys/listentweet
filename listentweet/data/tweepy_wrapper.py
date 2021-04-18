@@ -112,7 +112,6 @@ class StreamListenerToJson(tweepy.StreamListener):
         json.dump(status._json, self.fhandler)
         self.fhandler.write("\n")
         self.count += 1
-        print(status)
         self.logger.info(f"Streaming... saved {self.count} tweets.")
 
     def on_error(self, status_code):

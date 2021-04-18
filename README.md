@@ -18,8 +18,8 @@ You should create your own Twitter developper account to obtain these tokens so 
 
 ## Checklist:
 
-- [ ] Tweet Retriever
-- [ ] Tweet Streamer
+- [x] Tweet Retriever
+- [x] Tweet Streamer
 - [ ] Kafka integration
 - [ ] Database - MongoDB?
 - [ ] SpaCy Basic Pipelines
