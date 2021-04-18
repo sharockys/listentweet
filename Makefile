@@ -23,6 +23,13 @@ endif
 build_tweepy_docker:
 	docker build -f docker/Tweepy_docker/Dockerfile -t listentweet:tweepy .
 
+run_tweepy_docker:
+ifeq (,$(wildcard .env))
+	echo "Please create .env file contains necessary secrets to run the docker."
+else
+	docker run -it --env-file .env --name listen -d listentweet:tweepy
+endif
+
 ## Install Python Dependencies
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
