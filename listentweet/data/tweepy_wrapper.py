@@ -117,31 +117,3 @@ class StreamListenerToJson(tweepy.StreamListener):
     def on_error(self, status_code):
         self.logger.error(f"Error occured with Status Code {status_code}")
         return super().on_error(status_code)
-
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    stdb = TwitterToDBStreamer("twitter", "laposte")
-    keywords = [
-        "#laposte",
-        "#colissimo",
-        "#dpd",
-        "#chronopost",
-        "Laposte",
-        "Colissimo",
-        "dpd",
-        "chronopost",
-        "colis",
-        "lettre",
-        "geopost",
-        "banque postale",
-        "digipost",
-        "DPD",
-        "Poste Mobile",
-        "Mediapost",
-        "viapost",
-        "sofipost",
-        "poste immo",
-    ]
-    languages = ["fr", "en"]
-    stdb(keywords, languages)
