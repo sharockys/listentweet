@@ -2,5 +2,5 @@ black==20.8b1
 flake8==3.9.1
 pycodestyle==2.7.0
 pytest==6.2.3
-yamllint==1.26.1
+yamllint==1.26.2
 
